@@ -1,0 +1,39 @@
+<p>
+  Template displays the model:
+  {{data}}
+</p>
+
+<p [style.color]="favoriteColor">
+  Concatenate strings {{data + '>MORE TEXT'}}
+</p>
+
+More directly
+<p>{{data}}</p>
+
+=======Make Some Coll Loops
+<div>
+  <ul>
+    <!--Loops in pseudo HTML-->
+    <li *ngFor="let coin of coins">
+      {{coin.symbol}} => {{coin.price}}
+    </li>
+  </ul>
+
+</div>
+
+========Make Table great again:
+<div>
+  <!--name, symbol, price-->
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Symbol</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let coin of coins">
+      <td>{{coin.name}}</td>
+      <td>{{coin.symbol}}</td>
+      <td>{{coin.price}}</td>
+    </tr>
+  </table>
+</div>

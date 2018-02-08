@@ -1,0 +1,14 @@
+<p>
+  attributes works!
+  <button [disabled]="isDisabled">Click ME</button>
+  <button (click)="toggle()">Toggle my button</button>
+  <input name="data" #dataElt (keyup)="nop()" > this is html :{{dataElt.value}}
+</p>
+
+<div>
+  A burger costs : {{burgerService.getPrice()}} €
+  and steak weight is : {{burgerService.steakService.getWeight()}} g
+  <p>
+  Bun height is : {{height}} mm
+  </p>
+</div>

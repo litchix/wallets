@@ -1,0 +1,23 @@
+<p>
+
+</p>
+<form>
+
+  Wallet name : <input placeholder="écrire ici" name="name"
+                       [(ngModel)]="formModel.name">
+  <br/>
+  Max Deposit : <input placeholder="Enter limit" type="number"
+                       name="limit" [(ngModel)]="formModel.limit">
+  <br/>
+  Enter your level : <select name="level" [(ngModel)]="formModel.level">
+  <option *ngFor="let l of levels; ">{{l}}
+
+  </option>
+
+</select>
+  <br/>
+  <button (click)="createNewWallet()" [disabled]="isDisabled()">Save Wallet</button>
+
+</form>
+
+You have chosen : <strong>{{formModel.level}}</strong>
