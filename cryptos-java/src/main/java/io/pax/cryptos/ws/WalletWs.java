@@ -22,8 +22,8 @@ public class WalletWs {
     @GET
     public List<Wallet> getWallets() throws SQLException {
         WalletDao dao = new WalletDao();
-
         return dao.listWallets();
+
     }
 
 

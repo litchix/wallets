@@ -7,6 +7,6 @@ export class User {
   name: string;
 
   //protip: always better to initiate an array
-  wallets:Wallet[] =[];
+  wallets: Wallet[] = [];
 
 }

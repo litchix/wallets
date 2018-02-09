@@ -29,4 +29,9 @@ public class SimpleUser implements User {
     public List<Wallet> getWallets() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

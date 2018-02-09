@@ -7,6 +7,7 @@ import io.pax.cryptos.domain.Wallet;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
@@ -23,7 +24,12 @@ public class UserWs {
     @GET
     public List<User> getUsers() throws SQLException {
         UserDao dao = new UserDao();
-
         return dao.listUsers();
+    }
+
+    @GET
+    @Path("{id}")//this is a PathParam (ds la barre d'adresse)
+    public User getUser(@PathParam("id") int userId) throws SQLException {
+        return new UserDao().findUserWithWallets(userId);
     }
 }
