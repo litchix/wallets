@@ -6,8 +6,8 @@ import java.util.List;
  * Created by AELION on 08/02/2018.
  */
 public class SimpleUser implements User {
-    int id;
 
+    int id;
     String name;
 
     public SimpleUser(int id, String name) {

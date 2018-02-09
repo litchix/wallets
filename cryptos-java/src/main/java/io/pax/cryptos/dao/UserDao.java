@@ -17,31 +17,11 @@ import java.util.List;
  */
 public class UserDao {
 
-    public DataSource connect() {
-
-        DataSource dataSource;
-
-        try {
-            Context context = new InitialContext();
-            dataSource = (DataSource) context.lookup("java:/cryptos");
-
-        } catch (NamingException e) {
-
-            MysqlDataSource mysqlDataSource = new MysqlDataSource();
-            mysqlDataSource.setUser("root");
-            mysqlDataSource.setPassword("");
-            mysqlDataSource.setServerName("localhost");
-            mysqlDataSource.setDatabaseName("cryptos");
-            mysqlDataSource.setPort(3306);
-            dataSource = mysqlDataSource;
-        }
-
-        return dataSource;
-    }
+    JdbcConnector connector = new JdbcConnector();
 
     public List<User> listUsers() throws SQLException {
         List<User> users = new ArrayList<>();
-        Connection conn = connect().getConnection();
+        Connection conn = this.connector.getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM user");
 
@@ -50,8 +30,8 @@ public class UserDao {
             int id = rs.getInt("id");
 
             users.add(new SimpleUser(id, name));
-
         }
+
         rs.close();
         stmt.close();
         conn.close();
@@ -62,7 +42,7 @@ public class UserDao {
         String query = "INSERT INTO user (name) VALUES (?)";
         System.out.println(query);
 
-        Connection conn = connect().getConnection();
+        Connection conn = this.connector.getConnection();
         PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, name);
 
@@ -84,7 +64,7 @@ public class UserDao {
         //SELECT * FROM user u JOIN wallet w ON u.id=w.user_id WHERE u.name LIKE ?
         System.out.println(query);
 
-        Connection conn = connect().getConnection();
+        Connection conn = this.connector.getConnection();
         PreparedStatement statement = conn.prepareStatement(query);
         statement.setInt(1, userId);
 
@@ -99,7 +79,7 @@ public class UserDao {
 
     public List<User> findByName(String extract) throws SQLException {
         List<User> users = new ArrayList<>();
-        Connection conn = connect().getConnection();
+        Connection conn = this.connector.getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE name LIKE '" + extract + "%'");
 
@@ -120,7 +100,7 @@ public class UserDao {
         String query = "DELETE FROM user WHERE  name= ?";
         System.out.println(query);
 
-        Connection conn = connect().getConnection();
+        Connection conn = this.connector.getConnection();
         PreparedStatement statement = conn.prepareStatement(query);
         statement.setString(1, exactName);
 
@@ -138,7 +118,7 @@ public class UserDao {
 
         System.out.println(query);
 
-        Connection conn = connect().getConnection();
+        Connection conn = this.connector.getConnection();
         PreparedStatement statement = conn.prepareStatement(query);
         statement.setString(1, newName);
         statement.setInt(2, userId);
@@ -154,7 +134,7 @@ public class UserDao {
 
     public static void main(String[] args) throws SQLException {
         UserDao dao = new UserDao();
-        //dao.listUsers();
+        dao.listUsers();
         //dao.createUser("Alix");
         //dao.deleteUser(5);
         //System.out.println(dao.findByName("A"));
