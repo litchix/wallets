@@ -3,12 +3,15 @@ import {symbolIteratorPonyfill} from "rxjs/symbol/iterator";
 import {createUrlResolverWithoutPackagePrefix} from "@angular/compiler";
 import {PricingService} from "../pricing.service";
 import {visitValue} from "@angular/compiler/src/util";
+import {User} from "./user";
 export class Line {
   constructor(public symbol: string, public quantity: number, public value:number) {
   }
 }
 
 export class Wallet {
+  user:User;
+  name:string;
   lines: Line[] = [];
   pricingService: PricingService;
 

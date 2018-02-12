@@ -64,7 +64,7 @@ public class UserDao {
             int walletId = set.getInt("w.id");
             String walletName = set.getString("w.name");
 
-            if(walletId >0){
+            if (walletId > 0) {
                 Wallet wallet = new SimpleWallet(walletId, walletName);
                 wallets.add(wallet);
             }

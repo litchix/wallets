@@ -4,18 +4,33 @@ Please choose a user
 <div>
   <ul>
     <li *ngFor="let user of users">
-      <a href="#{{user.id}}" (click)="details(user)" >
+      <a href="#{{user.id}}" (click)="details(user)">
         {{user.name}}</a>
     </li>
-
   </ul>
-
+</div>
+<div>
+  <h3>Create new User</h3>
+  <form>
+    <input type="text" name="userName"
+           [(ngModel)]="createdUser.name" (click)="createdUser.name='' ">
+    <button (click)="createUser()" [disabled]="createdUser.name?.length<2">Create new User</button>
+  </form>
 </div>
 <div *ngIf="selectedUser">
-  <h2> User details : {{selectedUser.name}}</h2>
+  <h3> User details : {{selectedUser.name}}</h3>
   <ul>
-  <li style="{display: inline}" *ngFor="let wallet of selectedUser.wallets">
-    {{wallet.name}}
-  </li>
+    <li style="{display: inline}" *ngFor="let wallet of selectedUser.wallets">
+      {{wallet.name}}
+    </li>
   </ul>
+
+  <h3>Create new Wallet</h3>
+  <form>
+    <input type="text" name="walletName"
+           [(ngModel)]="createdWallet.name" (click)="createdWallet.name='' ">
+    <button (click)="createWallet()" [disabled]="createdWallet.name.length>2">Create new Wallet</button>
+  </form>
+
 </div>
+

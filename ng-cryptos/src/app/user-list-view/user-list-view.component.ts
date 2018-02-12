@@ -12,6 +12,8 @@ export class UserListViewComponent implements OnInit {
 
   users: User[];
   selectedUser: User;
+  createdWallet: Wallet = new Wallet();
+  createdUser: User = new User();
 
   constructor(public dataService: DataService) {
     dataService.fetchUsers()
@@ -30,10 +32,33 @@ export class UserListViewComponent implements OnInit {
   }
 
   details(user: User) {
-    //this.selectedUser = user;
-   // console.log('You selected', user);
+    this.selectedUser = user;
+
+    //Created model associated to the form
+    this.createdWallet = new Wallet();
+    this.createdWallet.user = user;
+    this.createdWallet.name = user.name + "'s wallet";
+
+    this.createdUser.name = user.name;
+
     this.dataService.fetchUserWithWallets(user)
       .then(fullUser => this.selectedUser = fullUser)
       .then(console.log); //What???
+  }
+
+  createWallet() {
+    this.dataService.createWallet(this.createdWallet)
+      .then(() => this.selectedUser.wallets.push(
+        Object.assign({}, this.createdWallet)
+      ))
+      .catch(e => alert(e));
+  }
+
+  createUser() {
+    this.dataService.createUser(this.createdUser)
+      .then(() => this.users.push(
+        Object.assign({}, this.createdUser)
+      ))
+      .catch(e => alert(e));
   }
 }
