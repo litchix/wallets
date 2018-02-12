@@ -9,6 +9,7 @@ Please choose a user
     </li>
   </ul>
 </div>
+
 <div>
   <h3>Create new User</h3>
   <form>
@@ -17,11 +18,12 @@ Please choose a user
     <button (click)="createUser()" [disabled]="createdUser.name?.length<2">Create new User</button>
   </form>
 </div>
+
 <div *ngIf="selectedUser">
   <h3> User details : {{selectedUser.name}}</h3>
   <ul>
     <li style="{display: inline}" *ngFor="let wallet of selectedUser.wallets">
-      {{wallet.name}}
+      <input type="checkbox" (click)="checked">{{wallet.name}}
     </li>
   </ul>
 
@@ -29,8 +31,10 @@ Please choose a user
   <form>
     <input type="text" name="walletName"
            [(ngModel)]="createdWallet.name" (click)="createdWallet.name='' ">
-    <button (click)="createWallet()" [disabled]="createdWallet.name.length>2">Create new Wallet</button>
+    <button (click)="createWallet()" [disabled]="createdWallet.name?.length<2">Create new Wallet</button>
+
   </form>
+</div>
+<div>
 
 </div>
-

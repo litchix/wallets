@@ -39,7 +39,7 @@ export class UserListViewComponent implements OnInit {
     this.createdWallet.user = user;
     this.createdWallet.name = user.name + "'s wallet";
 
-    this.createdUser.name = user.name;
+    this.createdUser.name = "New "+user.name;
 
     this.dataService.fetchUserWithWallets(user)
       .then(fullUser => this.selectedUser = fullUser)

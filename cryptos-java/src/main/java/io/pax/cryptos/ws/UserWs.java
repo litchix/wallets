@@ -7,6 +7,7 @@ import io.pax.cryptos.domain.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +32,11 @@ public class UserWs {
 
     @POST
 
-    public User createUser(SimpleUser user) {
+    public User createUser(FullUser user) {
+
         String userName = user.getName();
+        List<Wallet> wallets = new ArrayList<>();
+
         if (userName == null) {
             throw new NotAcceptableException("No user name sent");
         }
@@ -41,7 +45,7 @@ public class UserWs {
         }
         try {
             int id = new UserDao().createUser(userName);
-            return new SimpleUser(id, userName);
+            return new FullUser(id, userName, wallets);
         } catch (SQLException e) {
             throw new ServerErrorException("Database error, sorry", 500);
         }

@@ -30,7 +30,7 @@ export class DataService {
   }
 
   createWallet(wallet:Wallet){
-    let url = 'http://localhost:8080/cryptos/api/wallets/';
+    let url = 'http://localhost:8080/cryptos/api/wallets/' ;
 
     let dto = { //Data Transfer Object. Pour Jax-B
       name:wallet.name,
@@ -55,7 +55,10 @@ export class DataService {
     return this.http
       .post(url, dto)
       .toPromise()
-      .then(data => console.log('Success :)', data))
+      .then(data => {
+        console.log('Success :)', data);
+
+      })
     //.catch(e => console.error('Fail :(', e))
   }
 }
