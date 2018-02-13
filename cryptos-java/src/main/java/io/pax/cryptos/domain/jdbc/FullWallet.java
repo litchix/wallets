@@ -1,4 +1,6 @@
-package io.pax.cryptos.domain;
+package io.pax.cryptos.domain.jdbc;
+
+import io.pax.cryptos.domain.User;
 
 /**
  * Created by AELION on 12/02/2018.

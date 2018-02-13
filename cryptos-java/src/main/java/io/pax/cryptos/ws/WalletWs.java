@@ -1,8 +1,8 @@
 package io.pax.cryptos.ws;
 
 import io.pax.cryptos.dao.WalletDao;
-import io.pax.cryptos.domain.FullWallet;
-import io.pax.cryptos.domain.SimpleUser;
+import io.pax.cryptos.domain.jdbc.FullWallet;
+import io.pax.cryptos.domain.jdbc.SimpleUser;
 import io.pax.cryptos.domain.User;
 import io.pax.cryptos.domain.Wallet;
 
@@ -10,7 +10,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by AELION on 06/02/2018.

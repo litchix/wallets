@@ -26,7 +26,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.40</version>
             <!-- provided : already included in server ; needed for the IDE/compiler to know-->
-
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.6.Final</version>
         </dependency>
     </dependencies>
 
