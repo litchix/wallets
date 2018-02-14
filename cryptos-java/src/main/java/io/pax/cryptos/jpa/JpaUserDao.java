@@ -17,7 +17,7 @@ public class JpaUserDao {
 
     JpaConnector connector = new JpaConnector();
 
-    public User createUser(String name) {
+    public JpaUser createUser(String name) {
 
         EntityManager em = connector.createEntityManager();
         em.getTransaction().begin();
@@ -34,6 +34,7 @@ public class JpaUserDao {
 
         em.getTransaction().commit();
         em.close();
+
         System.out.println("User id : " + user.getId());
         return user;
     }

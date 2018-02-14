@@ -1,7 +1,6 @@
 package io.pax.cryptos.domain.jpa;
 
 import io.pax.cryptos.domain.User;
-import io.pax.cryptos.domain.Wallet;
 
 import javax.persistence.*;
 import java.util.ArrayList;
