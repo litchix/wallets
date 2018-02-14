@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *Wrap Factory
+ * Pure technical class that Wrap Factory
  */
 public class JpaConnector {
 
@@ -25,7 +25,7 @@ public class JpaConnector {
     }
 
     public void close() {
-        this.factory.close();
+        factory.close();
 
     }
 

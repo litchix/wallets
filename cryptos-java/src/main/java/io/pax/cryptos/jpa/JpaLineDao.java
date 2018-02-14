@@ -25,7 +25,7 @@ public class JpaLineDao {
         EntityManager em = dao.connector.createEntityManager();
 
         em.getTransaction().begin();
-        //kenny = em.merge(kenny);
+        kenny = em.merge(kenny);
         wallet = em.merge(wallet);
 
         JpaLine lineBtc = new JpaLine();

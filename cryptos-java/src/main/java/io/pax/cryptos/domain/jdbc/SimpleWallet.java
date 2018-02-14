@@ -1,7 +1,11 @@
 package io.pax.cryptos.domain.jdbc;
 
+import io.pax.cryptos.domain.Line;
 import io.pax.cryptos.domain.User;
 import io.pax.cryptos.domain.Wallet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by AELION on 06/02/2018.
@@ -36,6 +40,11 @@ public class SimpleWallet implements Wallet {
     }
 
     @Override
+    public List<? extends Line> getLines() {
+        return new ArrayList<>();
+    }
+
+    @Override
     public String toString() {
         return this.name;
     }
@@ -43,4 +52,5 @@ public class SimpleWallet implements Wallet {
     public void setName(String name) {
         this.name = name;
     }
+
 }
