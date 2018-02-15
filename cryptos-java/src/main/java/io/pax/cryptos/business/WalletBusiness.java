@@ -20,7 +20,7 @@ public class WalletBusiness {
     @PersistenceContext
     EntityManager em;
 
-    public Wallet findWallet(int id) {
+    public JpaWallet findWallet(int id) {
         //transaction is opened in your back
         JpaWallet w = em.find(JpaWallet.class, id);
 
@@ -30,10 +30,10 @@ public class WalletBusiness {
                 .setParameter("id", id)
                 .getResultList();
 
-        System.out.println(lines);
-
         w.setLines(lines);
+
         return w;
+
     }//and now closed.
 
 

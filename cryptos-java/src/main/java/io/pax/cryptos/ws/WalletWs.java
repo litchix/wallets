@@ -6,8 +6,8 @@ import io.pax.cryptos.domain.jdbc.FullWallet;
 import io.pax.cryptos.domain.jdbc.SimpleUser;
 import io.pax.cryptos.domain.User;
 import io.pax.cryptos.domain.Wallet;
+import io.pax.cryptos.domain.jpa.JpaLine;
 import io.pax.cryptos.domain.jpa.JpaWallet;
-import io.pax.cryptos.jpa.JpaWalletDao;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -36,7 +36,11 @@ public class WalletWs {
     @GET
     @Path("{id}")
     public Wallet getWallet(@PathParam("id") int walletId) {
-        return walletBusiness.findWallet(walletId);
+        JpaWallet wallet = walletBusiness.findWallet(walletId);
+        //Creating a kind of DTO :Data transfert Object
+        //Cutting circular reference
+        wallet.getLines().stream().forEach(jpaLine -> jpaLine.setWallet(null));
+        return wallet;
 
     }
 
